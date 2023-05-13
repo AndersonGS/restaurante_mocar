@@ -22,6 +22,9 @@ Install project dependencies
 ```sh
 composer install
 ```
+```sh
+npm install && npm run dev
+```
 
 Creat DataBase
 ```sh
