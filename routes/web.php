@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/mesas-disponiveis', [App\Http\Controllers\ReservaController::class, 'mesasDisponiveis']);
+    Route::get('/horarios-disponiveis', [App\Http\Controllers\ReservaController::class, 'horariosDisponiveis']);
+    Route::post('/reserva', [App\Http\Controllers\ReservaController::class, 'fazerReserva']);
+});

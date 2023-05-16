@@ -19,10 +19,10 @@ class ReservaFactory extends Factory
     public function definition()
     {
         $reserva = Carbon::parse($this->faker->dateTimeBetween('this week', '+6 days'));
-        $reserva_hora_1 = ($reserva->setTime(18, 0, 0))->toDateTimeString();
-        $reserva_hora_2 = ($reserva->setTime(19, 30, 0))->toDateTimeString();
-        $reserva_hora_3 = ($reserva->setTime(21, 0, 0))->toDateTimeString();
-        $reserva_hora_4 = ($reserva->setTime(22, 30, 0))->toDateTimeString();
+        $reserva_hora_1 = ($reserva->copy())->setTime(18, 0, 0);
+        $reserva_hora_2 = ($reserva->copy())->setTime(19, 30, 0);
+        $reserva_hora_3 = ($reserva->copy())->setTime(21, 0, 0);
+        $reserva_hora_4 = ($reserva->copy())->setTime(22, 30, 0);
 
         // 90 minutos: 18:00 - 19:30 - 21:00 - 22:30
         return [
