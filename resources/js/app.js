@@ -23,6 +23,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('reservar-mesa', require('./components/ReservarMesa.vue').default);
+Vue.component('listar-reservas', require('./components/ListarReservas.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

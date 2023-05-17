@@ -46,7 +46,7 @@
     </header>
     <main>
         <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
-            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+            <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg">
                 <div class="p-6">
                     <div class="flex justify-center">
                         <img class="w-64" src="/img/logo_moçar.png" alt="Restaurante Moçar">

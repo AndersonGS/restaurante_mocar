@@ -20,13 +20,16 @@
                 <tr v-for="horarios, index in horariosDisponiveis" :key="index">
                     <td>{{ formatarData(horarios.horario) }}</td>
                     <td>
-                        <label class="me-2" v-for="mesa in horarios.mesas" :key="mesa.id">
+                        <label class="ml-2 mb-0" v-for="mesa in horarios.mesas" :key="mesa.id">
                             Mesa {{ mesa.id }} ({{ mesa.lugares }} lugares)
                         </label>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div class="text-center" v-if="!isLoading">
+            <b-spinner class="m-5" variant="primary" type="grow" label="Spinning"></b-spinner>
+        </div>
         <hr>
         <form class="form-group" @submit.prevent="fazerReserva" v-if="isLoading">
             <h4>Escolha o horario e a mesa:</h4>
@@ -52,7 +55,7 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
-import { BFormDatepicker, BButton, BInputGroup,BInputGroupAppend, BFormGroup } from 'bootstrap-vue';
+import { BFormDatepicker, BButton, BInputGroup, BInputGroupAppend, BFormGroup, BSpinner } from 'bootstrap-vue';
 
 
 export default {
@@ -62,6 +65,7 @@ export default {
         BInputGroup,
         BInputGroupAppend,
         BFormGroup,
+        BSpinner,
     },
     data() {
         return {
@@ -80,7 +84,7 @@ export default {
     methods: {
         obterHorariosDisponiveis(dataSelecionada) {
             this.isLoading = false;
-            axios.get('/mesas-disponiveis?dataReserva='+dataSelecionada)
+            axios.get('/mesas-disponiveis?dataReserva=' + dataSelecionada)
                 .then(response => {
                     this.isLoading = true;
                     this.horariosDisponiveis = response.data;

@@ -10,8 +10,13 @@ class Mesa extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'lugares', 'foto',
+    ];
+
+    // Relação com a tabela "reserva"
     public function reservas()
     {
-        return $this->hasMany(Reserva::class, 'res_mesa');
+        return $this->hasMany(Reserva::class);
     }
 }

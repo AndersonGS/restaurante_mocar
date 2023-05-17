@@ -22,7 +22,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/reservas', [App\Http\Controllers\ReservaController::class, 'index'])->name('reservas');
     Route::get('/mesas-disponiveis', [App\Http\Controllers\ReservaController::class, 'mesasDisponiveis']);
-    Route::get('/horarios-disponiveis', [App\Http\Controllers\ReservaController::class, 'horariosDisponiveis']);
     Route::post('/reserva', [App\Http\Controllers\ReservaController::class, 'fazerReserva']);
+    Route::get('/lista-reservas', [App\Http\Controllers\ReservaController::class, 'listaReservas']);
 });

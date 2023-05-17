@@ -3,14 +3,13 @@
 @section('content')
 <div class="text-center">
     <div class="form-signin">
-        <form  method="POST" action="{{ route('login') }}">
+        <form  method="POST" action="{{ route('login') }}" class="form-group">
             @csrf
             <img class="mb-4" src="img/logo_moçar.png" alt="" width="72" height="72">
             <h1 class="h3 mb-3 fw-normal">Entrar</h1>
 
             <div class="form-floating">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -18,8 +17,7 @@
                 @enderror
             </div>
             <div class="form-floating">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                <label for="password">Senha</label>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Senha">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -29,7 +27,7 @@
 
             <div class="checkbox mb-3">
                 <label>
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} >
                     Lembrar
                 </label>
             </div>

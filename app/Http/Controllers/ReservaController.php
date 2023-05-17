@@ -18,7 +18,7 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
+        return view('reservas');
     }
 
     /**
@@ -147,6 +147,16 @@ class ReservaController extends Controller
             'horario' => 'required',
         ]);
 
+        // Verifique se já existe uma reserva com a mesma mesa, data e horário
+        $reservaExistente = Reserva::where('mesa_id', $request->mesa)
+        ->where('res_mesa', Carbon::parse($request->horario))
+        ->exists();
+
+        // Se já existir uma reserva, retorne uma mensagem de erro
+        if ($reservaExistente) {
+            return response()->json(['error' => 'Já existe uma reserva para essa mesa, data e horário'], 400);
+        }
+
         // Crie a reserva no banco de dados
         $reserva = new Reserva();
         $reserva->mesa_id = $request->mesa;
@@ -155,5 +165,17 @@ class ReservaController extends Controller
         $reserva->save();
 
         return response()->json(['message' => 'Reserva feita com sucesso']);
+    }
+
+    public function listaReservas()
+    {
+        $dataHoraAtual = Carbon::now();
+
+        $reservas = Reserva::with('user', 'mesa')
+        ->where('res_mesa', '>', $dataHoraAtual)
+        ->orderBy('res_mesa')
+        ->get();
+
+        return response()->json($reservas);
     }
 }

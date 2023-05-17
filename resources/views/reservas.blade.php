@@ -6,12 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h1>Reserva de Mesas</h1>
+                    <h1>Lista de Reservas</h1>
                 </div>
 
                 <div class="card-body">
 
-                <reservar-mesa></reservar-mesa>
+                <listar-reservas></listar-reservas>
 
                 </div>
             </div>
